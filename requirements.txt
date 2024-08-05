@@ -4,8 +4,8 @@ hachoir
 Pillow
 psutil
 pymongo
-Pyroblack
-pyromod==1.5
+Pyrogram==2.0.80
+pyromod
 python-dotenv
 requests
 TgCrypto
