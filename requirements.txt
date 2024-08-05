@@ -5,7 +5,7 @@ Pillow
 psutil
 pymongo
 Pyroblack
-pyromod
+pyromod==1.5
 python-dotenv
 requests
 TgCrypto
