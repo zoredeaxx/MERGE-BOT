@@ -223,8 +223,8 @@ async def files_handler(c: Client, m: Message):
                 quote=True,
             )
             return
-    if user.merge_mode == 4: # extract_mode
-        return
+    #if user.merge_mode == 4: # extract_mode
+        #return
     input_ = f"downloads/{str(user_id)}/input.txt"
     if os.path.exists(input_):
         await m.reply_text("Sorry Bro,\nAlready One process in Progress!\nDon't Spam.")
