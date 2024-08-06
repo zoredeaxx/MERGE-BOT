@@ -54,7 +54,7 @@ async def streamsExtractor(c: Client, cb:CallbackQuery ,media_mid, exAudios=Fals
         extract_dir, audios = await extractAudios(file_dl_path,cb.from_user.id, media.file_name.rsplit('.',1)[0])
     if exSubs:
         await _hold.edit_text("Extracting Subtitles")
-        extract_dir, subtitles = await extractSubtitles(file_dl_path, cb.from_user.id)
+        extract_dir, subtitles = await extractSubtitles(file_dl_path, cb.from_user.id, media.file_name.rsplit('.',1)[0])
 
     if extract_dir is None:
         await cb.message.edit("❌ Failed to Extract Streams !")
