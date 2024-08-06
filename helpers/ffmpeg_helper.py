@@ -301,7 +301,7 @@ async def take_screen_shot(video_file, output_directory, ttl):
         return None
 
 
-async def extractAudios(path_to_file, user_id, og_file_name:str):
+async def extractAudios(path_to_file, user_id):
     """
     docs
     """
@@ -336,12 +336,14 @@ async def extractAudios(path_to_file, user_id, og_file_name:str):
                     "("
                     + audio["tags"]["language"]
                     + ") "
-                    + og_file_name
+                    + audio["tags"]["title"]
+                    + "."
+                    + audio["codec_type"]
                     + ".mka"
                 )
                 output_file = output_file.replace(" ", ".")
             except:
-                output_file = str(audio["index"]) + "." + og_file_name + ".mka"
+                output_file = str(audio["index"]) + "." + audio["codec_type"] + ".mka"
             extractcmd.append("-c")
             extractcmd.append("copy")
             extractcmd.append(f"{extract_dir}/{output_file}")
@@ -350,13 +352,13 @@ async def extractAudios(path_to_file, user_id, og_file_name:str):
         except Exception as e:
             LOGGER.error(f"Something went wrong: {e}")
     if get_path_size(extract_dir) > 0:
-        return extract_dir, audios
+        return extract_dir
     else:
         LOGGER.warning(f"{extract_dir} is empty")
         return None
 
 
-async def extractSubtitles(path_to_file, user_id, og_file_name:str):
+async def extractSubtitles(path_to_file, user_id):
     """
     docs
     """
@@ -391,8 +393,10 @@ async def extractSubtitles(path_to_file, user_id, og_file_name:str):
                     "("
                     + subtitle["tags"]["language"]
                     + ") "
-                    + og_file_name
-                    + ".srt"
+                    + subtitle["tags"]["title"]
+                    + "."
+                    + subtitle["codec_type"]
+                    + ".mka"
                 )
                 output_file = output_file.replace(" ", ".")
             except:
@@ -400,12 +404,14 @@ async def extractSubtitles(path_to_file, user_id, og_file_name:str):
                     output_file = (
                         str(subtitle["index"])
                         + "."
-                        + og_file_name
-                        + ".srt"
+                        + subtitle["tags"]["language"]
+                        + "."
+                        + subtitle["codec_type"]
+                        + ".mka"
                     )
                 except:
                     output_file = (
-                        str(subtitle["index"]) + "." + og_file_name + ".srt"
+                        str(subtitle["index"]) + "." + subtitle["codec_type"] + ".mka"
                     )
             extractcmd.append("-c")
             extractcmd.append("copy")
@@ -415,7 +421,7 @@ async def extractSubtitles(path_to_file, user_id, og_file_name:str):
         except Exception as e:
             LOGGER.error(f"Something went wrong: {e}")
     if get_path_size(extract_dir) > 0:
-        return extract_dir, subtitles
+        return extract_dir
     else:
         LOGGER.warning(f"{extract_dir} is empty")
         return None
