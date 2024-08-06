@@ -114,8 +114,7 @@ async def uploadFiles(
     cb: CallbackQuery,
     up_path,
     n,
-    all,
-    custom_caption:str|None
+    all
 ):
     try:
         sent_ = None
@@ -124,7 +123,7 @@ async def uploadFiles(
         sent_: Message = await c.send_document(
             chat_id=cb.message.chat.id,
             document=up_path,
-            caption=f"`{up_path.rsplit('/',1)[-1]}`" + (f"\n\n__track title: **{custom_caption}**__" if custom_caption else ""),
+            caption=f"`{up_path.rsplit('/',1)[-1]}`",
             progress=prog.progress_for_pyrogram,
             progress_args=(
                 f"Uploading: `{up_path.rsplit('/',1)[-1]}`",
