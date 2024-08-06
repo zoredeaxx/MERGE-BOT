@@ -392,7 +392,7 @@ async def extractSubtitles(path_to_file, user_id, og_file_name:str):
                     + subtitle["tags"]["language"]
                     + ") "
                     + og_file_name
-                    + ".mka"
+                    + ".srt"
                 )
                 output_file = output_file.replace(" ", ".")
             except:
@@ -401,11 +401,11 @@ async def extractSubtitles(path_to_file, user_id, og_file_name:str):
                         str(subtitle["index"])
                         + "."
                         + og_file_name
-                        + ".mka"
+                        + ".srt"
                     )
                 except:
                     output_file = (
-                        str(subtitle["index"]) + "." + og_file_name + ".mka"
+                        str(subtitle["index"]) + "." + og_file_name + ".srt"
                     )
             extractcmd.append("-c")
             extractcmd.append("copy")
